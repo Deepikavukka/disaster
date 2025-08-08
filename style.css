@@ -1,0 +1,72 @@
+/* Basic resets and dark theme setup */
+:root {
+    --primary-bg: #1a1a1a;
+    --text-color: #f0f0f0;
+    --alert-bg: #ff4d4d;
+    --alert-text: #ffffff;
+    --popup-bg: #2c2c2c;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden; /* Prevents scrollbars from appearing */
+}
+
+/* Map container styling */
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Keep map below the alert banner */
+}
+
+/* Alert Banner Styling */
+#alert-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--alert-bg);
+    color: var(--alert-text);
+    text-align: center;
+    padding: 15px;
+    z-index: 1000; /* Ensure it's on top of everything */
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-100%); /* Start hidden above the screen */
+    transition: transform 0.5s ease-in-out;
+}
+
+#alert-banner.visible {
+    transform: translateY(0); /* Slide it down into view */
+}
+
+/* Leaflet Popup Customization */
+.leaflet-popup-content-wrapper {
+    background-color: var(--popup-bg);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.leaflet-popup-content {
+    margin: 15px;
+}
+
+.leaflet-popup-content h3 {
+    margin-top: 0;
+    color: #ffc107; /* A highlight color for the title */
+}
+
+.leaflet-popup-tip {
+    background-color: var(--popup-bg);
+}
+
+.leaflet-popup-close-button {
+    color: var(--text-color) !important;
+}
