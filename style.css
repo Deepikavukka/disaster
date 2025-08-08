@@ -5,6 +5,10 @@
     --alert-bg: #ff4d4d;
     --alert-text: #ffffff;
     --popup-bg: #2c2c2c;
+    --icon-bg: #333333;
+    --icon-bg-hover: #4f4f4f;
+    --sos-bg: #e63946;
+    --sos-bg-hover: #c9302c;
 }
 
 html, body {
@@ -15,17 +19,15 @@ html, body {
     background-color: var(--primary-bg);
     color: var(--text-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden; /* Prevents scrollbars from appearing */
+    overflow: hidden;
 }
 
-/* Map container styling */
 #map {
     width: 100%;
     height: 100%;
-    z-index: 1; /* Keep map below the alert banner */
+    z-index: 1;
 }
 
-/* Alert Banner Styling */
 #alert-banner {
     position: fixed;
     top: 0;
@@ -35,15 +37,80 @@ html, body {
     color: var(--alert-text);
     text-align: center;
     padding: 15px;
-    z-index: 1000; /* Ensure it's on top of everything */
+    z-index: 1000;
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transform: translateY(-100%); /* Start hidden above the screen */
+    transform: translateY(-100%);
     transition: transform 0.5s ease-in-out;
 }
 
 #alert-banner.visible {
-    transform: translateY(0); /* Slide it down into view */
+    transform: translateY(0);
+}
+
+/* === UPDATED NAVIGATION BAR STYLES === */
+.navigation-bar {
+    position: fixed;
+    top: 50%;
+    right: 20px; /* MOVED TO THE RIGHT */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Increased space */
+    z-index: 1000;
+    padding: 20px 15px;
+    background-color: rgba(30, 30, 30, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;  /* LARGER ICON CONTAINER */
+    height: 80px; /* LARGER ICON CONTAINER */
+    border-radius: 50%;
+    background-color: var(--icon-bg);
+    border: 2px solid #555;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-item a:hover {
+    background-color: var(--icon-bg-hover);
+    transform: scale(1.1);
+    border-color: #777;
+}
+
+.nav-item img {
+    width: 50px;  /* LARGER ICON */
+    height: 50px; /* LARGER ICON */
+}
+
+/* Specific styling for the SOS button container */
+#sos-button {
+    background-color: var(--sos-bg);
+    border-color: #ff6b78;
+}
+
+#sos-button:hover {
+    background-color: var(--sos-bg-hover);
+}
+
+.nav-label {
+    margin-top: 10px;
+    color: var(--text-color);
+    font-size: 0.9em;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 /* Leaflet Popup Customization */
@@ -60,7 +127,7 @@ html, body {
 
 .leaflet-popup-content h3 {
     margin-top: 0;
-    color: #ffc107; /* A highlight color for the title */
+    color: #ffc107;
 }
 
 .leaflet-popup-tip {
@@ -70,51 +137,9 @@ html, body {
 .leaflet-popup-close-button {
     color: var(--text-color) !important;
 }
-/* ... previous CSS ... */
 
-.navigation-bar {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    display: flex;
-    gap: 15px;
-    z-index: 2000; /* Ensure it's above the map and alert */
-    padding: 10px;
-    background-color: rgba(30, 30, 30, 0.8); /* Semi-transparent background */
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.navigation-bar a, .navigation-bar button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #444;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.navigation-bar a:hover, .navigation-bar button:hover {
-    background-color: #666;
-}
-
-.navigation-bar a img {
-    max-width: 24px;
-    max-height: 24px;
-}
-
-#sos-button {
-    color: white;
-    font-size: 1em;
-}
-
-/* Style for safe zone markers (will be added dynamically by JS later) */
 .safe-zone-marker .leaflet-marker-icon {
-    background-color: greenyellow; /* Example safe zone color */
+    background-color: greenyellow;
     border: 2px solid green;
     border-radius: 5px;
 }
