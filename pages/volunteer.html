@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Support</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .volunteer-form {
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: var(--popup-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .volunteer-form h2 {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #333;
+            color: var(--text-color);
+            box-sizing: border-box;
+        }
+        .form-group button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .form-group button:hover {
+            background-color: #4cae4c;
+        }
+        .content p a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+        .content p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="volunteer-form">
+        <h2>Offer Support</h2>
+        <form id="volunteer-form">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" required>
+            </div>
+            <div class="form-group">
+                <label for="shelter">Shelter Capacity:</label>
+                <input type="number" id="shelter" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label for="food">Food Provisions (Number of people/meals):</label>
+                <input type="text" id="food">
+            </div>
+            <div class="form-group">
+                <label for="resources">Other Resources (e.g., water, blankets):</label>
+                <textarea id="resources"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit Offer</button>
+            </div>
+        </form>
+        <p><a href="../index.html">Back to Map</a></p>
+    </div>
+    <script>
+        document.getElementById('volunteer-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const contact = document.getElementById('contact').value;
+            const shelter = document.getElementById('shelter').value;
+            const food = document.getElementById('food').value;
+            const resources = document.getElementById('resources').value;
+
+            // In a real application, you would send this data to a backend (like Supabase)
+            console.log('Volunteer Offer Submitted:', { name, contact, shelter, food, resources });
+            alert('Your volunteer offer has been submitted. (This is a simulation)');
+            document.getElementById('volunteer-form').reset();
+        });
+    </script>
+</body>
+</html>
