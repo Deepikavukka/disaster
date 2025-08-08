@@ -91,4 +91,50 @@ document.addEventListener('DOMContentLoaded', () => {
         alertBanner.innerHTML = `🚨 Significant Earthquake Alert: Magnitude ${magnitude} near ${place}`;
         alertBanner.classList.add('visible');
     }
+    // ... previous JavaScript ...
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (previous map initialization and earthquake fetching code) ...
+
+    // --- Feature: SOS Button ---
+    const sosButton = document.getElementById('sos-button');
+    sosButton.addEventListener('click', () => {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                // In a real application, you would send this SOS request
+                // to a backend server (e.g., using Supabase) with the user's location.
+                console.log('SOS Request Sent from:', { latitude: lat, longitude: lon });
+                alert('SOS request sent with your location. Help is on the way (this is a simulation).');
+
+                // --- Conceptual: Display Safe Zones (Requires Data) ---
+                // In a real application, you would fetch safe zone data
+                // based on the affected area (e.g., around Chennai).
+                const safeZones = [
+                    // Example safe zone coordinates (replace with actual data)
+                    { lat: 13.0827, lon: 80.2707, name: 'Community Hall A' },
+                    { lat: 13.0500, lon: 80.2500, name: 'School Building B' }
+                    // ... more safe zone coordinates ...
+                ];
+
+                safeZones.forEach(zone => {
+                    L.marker([zone.lat, zone.lon], {
+                        icon: L.divIcon({ className: 'safe-zone-marker', html: `<div style="padding: 5px; background-color: rgba(0, 255, 0, 0.7); color: black; border-radius: 3px;">${zone.name}</div>` })
+                    }).addTo(map)
+                        .bindPopup(`<strong>Safe Zone:</strong> ${zone.name}`);
+                });
+
+            }, error => {
+                alert('Could not get your location for the SOS request.');
+                console.error('Error getting geolocation:', error);
+            });
+        } else {
+            alert('Geolocation is not available on your browser.');
+        }
+    });
+
+    // ... (previous displayAlert function) ...
+});
 });
