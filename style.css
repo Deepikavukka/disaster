@@ -70,3 +70,51 @@ html, body {
 .leaflet-popup-close-button {
     color: var(--text-color) !important;
 }
+/* ... previous CSS ... */
+
+.navigation-bar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 15px;
+    z-index: 2000; /* Ensure it's above the map and alert */
+    padding: 10px;
+    background-color: rgba(30, 30, 30, 0.8); /* Semi-transparent background */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.navigation-bar a, .navigation-bar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #444;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navigation-bar a:hover, .navigation-bar button:hover {
+    background-color: #666;
+}
+
+.navigation-bar a img {
+    max-width: 24px;
+    max-height: 24px;
+}
+
+#sos-button {
+    color: white;
+    font-size: 1em;
+}
+
+/* Style for safe zone markers (will be added dynamically by JS later) */
+.safe-zone-marker .leaflet-marker-icon {
+    background-color: greenyellow; /* Example safe zone color */
+    border: 2px solid green;
+    border-radius: 5px;
+}
